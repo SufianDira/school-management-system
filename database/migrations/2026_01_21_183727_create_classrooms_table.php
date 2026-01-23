@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('description', 510)->nullable();
             $table->foreignId('teacher_id')
                 ->nullable()
                 ->constrained('users')

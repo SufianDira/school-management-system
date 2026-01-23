@@ -20,7 +20,7 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('classrooms')
                 ->nullOnDelete();
-            $table->integer('grade');
+            $table->decimal('grade', 5, 2)->nullable();
             $table->timestamps();
         });
     }
