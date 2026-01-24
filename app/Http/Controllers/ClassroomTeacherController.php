@@ -41,6 +41,6 @@ class ClassroomTeacherController extends Controller
 
         $classroom->update(['teacher_id' => null]);
 
-        return (new ClassroomResource($classroom));
+        return response()->noContent();
     }
 }

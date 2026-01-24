@@ -8,6 +8,7 @@ use App\Http\Requests\IndexStudentsRequest;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\StudentResource;
+use App\Models\User;
 use Illuminate\Http\Response;
 
 class StudentController extends Controller
@@ -34,9 +35,15 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        $student = Student::create($request->validated());
+        $user = User::create($request->only('name', 'email', 'password') + [
+                'role' => 'STUDENT',
+            ]);
 
-        return (new StudentResource($student))
+        $student = $user->student()->create($request->only('date_of_birth', 'grade') + [
+                'assigned_class_id' => null,
+            ]);
+
+        return (new StudentResource($student->load('user')))
             ->response()
             ->setStatusCode(Response::HTTP_CREATED);
     }
@@ -54,9 +61,13 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        $student->update($request->validated());
+        $user = $student->user()->update($request->only('name', 'email', 'password'));
 
-        return new StudentResource($student);
+        $student->update($request->only('date_of_birth', 'grade') + [
+                'assigned_class_id' => null,
+            ]);
+
+        return new StudentResource($student->load('user'));
     }
 
     /**

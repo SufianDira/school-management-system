@@ -45,6 +45,6 @@ class ClassroomStudentsController extends Controller
 
         $student->update(['assigned_class_id' => null]);
 
-        return new StudentResource($student);
+        return response()->noContent();
     }
 }
