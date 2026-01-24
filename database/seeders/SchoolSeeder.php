@@ -25,7 +25,17 @@ class SchoolSeeder extends Seeder
 
             User::factory()->admin()->create([
                 'name' => 'Admin',
-                'email' => 'admin@admin.com',
+                'email' => 'admin@test.com',
+            ]);
+
+            User::factory()->teacher()->create([
+                'name' => 'Teacher',
+                'email' => 'teacher@test.com',
+            ]);
+
+            User::factory()->student()->create([
+                'name' => 'Student',
+                'email' => 'student@test.com',
             ]);
 
             User::factory()->teacher()->count($teachersCount)
