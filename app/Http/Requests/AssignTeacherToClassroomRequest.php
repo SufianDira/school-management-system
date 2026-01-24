@@ -12,7 +12,7 @@ class AssignTeacherToClassroomRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return $this->user()->can('assignTeacher', $this->route('classroom'));
+        return $this->user()->can('manageTeacher', $this->route('classroom'));
     }
 
     /**

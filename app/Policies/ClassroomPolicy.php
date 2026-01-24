@@ -50,7 +50,7 @@ class ClassroomPolicy
         return $user->isAdmin();
     }
 
-    public function assignTeacher(User $user, Classroom $classroom): bool
+    public function manageTeacher(User $user, Classroom $classroom): bool
     {
         return $user->isAdmin();
     }
