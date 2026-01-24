@@ -193,6 +193,35 @@
       "response": []
     },
     {
+      "name": "users.store",
+      "id": "092362bc-d4db-4b3e-b04a-113adc395f63",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"name\": \"test123\",\r\n    \"email\": \"test@test123.com\",\r\n    \"password\": \"test1234\",\r\n    \"password_confirmation\": \"test1234\",\r\n    \"role\": \"TEACHER\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/users",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "v1",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
       "name": "students.index",
       "id": "de2ab325-4990-4e2d-bfeb-64d8c333169a",
       "protocolProfileBehavior": {
@@ -673,6 +702,7 @@
     {
       "listen": "prerequest",
       "script": {
+        "id": "0393c136-a59d-4d14-b554-2a824e6a3d88",
         "type": "text/javascript",
         "packages": {},
         "requests": {},
@@ -695,26 +725,25 @@
           "        key: \"Origin\",\r",
           "        value: pm.collectionVariables.get(\"base_url\")\r",
           "});"
-        ],
-        "id": "0698fe24-1fa1-41fd-8f7c-98897f42a1d8"
+        ]
       }
     },
     {
       "listen": "test",
       "script": {
+        "id": "9999c24a-fc63-4241-855f-2189757d3871",
         "type": "text/javascript",
         "packages": {},
         "requests": {},
         "exec": [
           ""
-        ],
-        "id": "d45cb468-e6de-44f1-9220-47365fd82c73"
+        ]
       }
     }
   ],
   "variable": [
     {
-      "id": "c29fa394-2aa8-46d6-bb3e-f65b6d1572eb",
+      "id": "df21c3ca-8378-47b1-905c-4a79d6a2be3e",
       "key": "base_url",
       "value": ""
     }
