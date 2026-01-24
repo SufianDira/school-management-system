@@ -3,18 +3,16 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use App\Models\Student;
 use Illuminate\Validation\Rules\Password;
 
-class StoreStudentRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return $this->user()->can('create', Student::class);
+        return true;
     }
 
     /**
@@ -25,14 +23,10 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['prohibited'],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'email', 'unique:users,email'],
             'password' => ['required', 'string', 'max:255', 'confirmed', Password::defaults()],
-            'role' => ['prohibited'],
             'date_of_birth' => ['required', 'date', 'before:today'],
-            'assigned_class_id' => ['prohibited'],
-            'grade' => ['nullable', 'decimal:0,2', 'between:0,100'],
         ];
     }
 }

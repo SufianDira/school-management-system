@@ -11,10 +11,10 @@ class IndexRequest extends IncludesRequest
      */
     public function rules(): array
     {
-        return [
+        return array_merge(parent::rules(), [
             'page' => ['sometimes', 'filled', 'integer', 'min:1'],
             'per_page' => ['sometimes', 'filled', 'integer', 'min:1', 'max:' . config('api.index.per_page_max')],
-        ];
+        ]);
     }
 
     public function perPage(): int
