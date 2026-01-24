@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 use Illuminate\Validation\Rules\Password;
 
 class UpdateStudentRequest extends FormRequest
@@ -25,7 +26,7 @@ class UpdateStudentRequest extends FormRequest
         return [
             'user_id' => ['prohibited'],
             'name' => ['sometimes', 'filled', 'string', 'max:255'],
-            'email' => ['sometimes', 'filled', 'string', 'max:255', 'email', 'unique:users,email'],
+            'email' => ['sometimes', 'filled', 'string', 'max:255', 'email', Rule::unique('users', 'email')->ignore($this->route('student')?->user_id)],
             'password' => ['sometimes', 'filled', 'string', 'max:255', 'confirmed', Password::defaults()],
             'role' => ['prohibited'],
             'date_of_birth' => ['sometimes', 'filled', 'date', 'before:today'],

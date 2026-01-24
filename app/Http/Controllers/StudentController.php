@@ -63,9 +63,7 @@ class StudentController extends Controller
     {
         $user = $student->user()->update($request->only('name', 'email', 'password'));
 
-        $student->update($request->only('date_of_birth', 'grade') + [
-                'assigned_class_id' => null,
-            ]);
+        $student->update($request->only('date_of_birth', 'grade'));
 
         return new StudentResource($student->load('user'));
     }

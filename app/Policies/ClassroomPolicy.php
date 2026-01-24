@@ -23,7 +23,7 @@ class ClassroomPolicy
     {
         return $user->isAdmin()
             || ($user->isTeacher() && $classroom->teacher_id === $user->id)
-            || ($user->isStudent() && $classroom->id === $user->assigned_class_id);
+            || ($user->isStudent() && $classroom->id === $user->student->assigned_class_id);
     }
 
     /**

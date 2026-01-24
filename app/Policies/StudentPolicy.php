@@ -40,7 +40,8 @@ class StudentPolicy
     public function update(User $user, Student $student): bool
     {
         return $user->isAdmin()
-            || ($user->isTeacher() && $student->classroom && $student->classroom->teacher_id === $user->id);
+            || ($user->isTeacher() && $student->classroom && $student->classroom->teacher_id === $user->id)
+            || ($user->isStudent() && $student->user_id === $user->id);
     }
 
     /**
