@@ -22,9 +22,9 @@ class UpdateClassroomRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'name' => ['sometimes', 'filled', 'string', 'max:255'],
             'description' => ['sometimes', 'nullable', 'string', 'max:510'],
-            'teacher_id' => ['sometimes', 'prohibited'],
+            'teacher_id' => ['prohibited'],
         ];
     }
 }

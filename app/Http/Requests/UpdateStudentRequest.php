@@ -3,8 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
-use App\Models\Student;
 
 class UpdateStudentRequest extends FormRequest
 {
@@ -25,7 +23,7 @@ class UpdateStudentRequest extends FormRequest
     {
         return [
             'user_id' => ['prohibited'],
-            'date_of_birth' => ['sometimes', 'required', 'date', 'before:today'],
+            'date_of_birth' => ['sometimes', 'filled', 'date', 'before:today'],
             'assigned_class_id' => ['prohibited'],
             'grade' => ['sometimes', 'nullable', 'decimal:0,2', 'between:0,100'],
         ];
